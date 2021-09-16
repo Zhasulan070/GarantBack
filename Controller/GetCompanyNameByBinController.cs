@@ -21,7 +21,7 @@ namespace GarantsBack.Controller
             _logger = logger;
         }
         
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> GetCompany([FromQuery(Name = "bin")] string bin)
         {
             var response = new Response<string>();

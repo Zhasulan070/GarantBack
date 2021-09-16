@@ -53,7 +53,7 @@ namespace GarantsBack.Controller
             catch (Exception e)
             {
                 response.StatusCode = -1;
-                response.ErrorMessage = "Some error in GetFilials service";
+                response.ErrorMessage = "Some error in GetCurrencies service";
                 _logger.LogError(e, response.ErrorMessage);
             }
             
@@ -72,7 +72,7 @@ namespace GarantsBack.Controller
             catch (Exception e)
             {
                 response.StatusCode = -1;
-                response.ErrorMessage = "Some error in GetFilials service";
+                response.ErrorMessage = "Some error in GetRequestTypes service";
                 _logger.LogError(e, response.ErrorMessage);
             }
             

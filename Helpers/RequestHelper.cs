@@ -15,7 +15,7 @@ namespace GarantsBack.Helpers
             client.Timeout = TimeSpan.FromSeconds(200);
             var content = new StringContent(JsonConvert.SerializeObject(ClientContent), Encoding.UTF8, "application/json");
             using var response = await client.PostAsync(Url, content);
-            var apiResponse = await response.Content.ReadAsStringAsync();
+            var apiResponse = await response.Content.ReadAsStringAsync(); //https://localhost:5010/api/GetNameByBin/GetNameByBin?bin=070440014948
             resHttp = JsonConvert.DeserializeObject<T>(apiResponse);
 
             return resHttp;

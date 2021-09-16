@@ -15,7 +15,7 @@ namespace GarantsBack.Service
         public GetReferencesService(IConfiguration iConfig)
         {
             var servicesUrl = iConfig.GetSection("LocalServices").GetSection("Url").Value;
-            _getReferencesService = servicesUrl + iConfig.GetSection("LocalServices").GetSection("GetFilialsService").Value;
+            _getReferencesService = servicesUrl + iConfig.GetSection("LocalServices").GetSection("GetReferencesService").Value;
 
         }
 

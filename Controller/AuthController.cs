@@ -6,6 +6,7 @@ using GarantsBack.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace GarantsBack.Controller
 {
@@ -53,16 +54,45 @@ namespace GarantsBack.Controller
         {
             var response = new Response<User>();
             var jwt = Request.Cookies["jwt"];
-            
+
             try
             {
+                if (jwt == null)
+                {
+                    throw new SecurityTokenUnableToValidateException();
+                }
                 response.Result = await _service.User(jwt);
                 response.StatusCode = 0;
             }
             catch (Exception e)
             {
+                if (e is SecurityTokenUnableToValidateException)
+                {
+                    return Unauthorized();
+                }
                 response.StatusCode = -1;
                 response.ErrorMessage = "Some error in User service";
+                _logger.LogError(e, response.ErrorMessage);
+            }
+
+            return Ok(response);
+        }
+        
+        [HttpPost("logout")]
+        public async Task<IActionResult> UserLogout()
+        {
+            var response = new Response<string>();
+
+            try
+            {
+                Response.Cookies.Delete("jwt");
+                response.Result = "was completed successfully";
+                response.StatusCode = 0;
+            }
+            catch (Exception e)
+            {
+                response.StatusCode = -1;
+                response.ErrorMessage = "Some error in Logout service";
                 _logger.LogError(e, response.ErrorMessage);
             }
 

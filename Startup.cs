@@ -32,6 +32,7 @@ namespace GarantsBack
             services.AddScoped<IGetUserInfoService, GetUserInfoService>();
             services.AddScoped<IGetReferencesService, GetReferencesService>();
             services.AddScoped<IGetCheckersService, GetCheckersService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddSwaggerGen();
             
             

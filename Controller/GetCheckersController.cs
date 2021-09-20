@@ -32,8 +32,9 @@ namespace GarantsBack.Controller
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                response.StatusCode = -1;
+                response.ErrorMessage = "Some error in GetCheckersList service";
+                _logger.LogError(e, response.ErrorMessage);
             }
 
             return Ok(response);

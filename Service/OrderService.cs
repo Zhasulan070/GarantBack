@@ -24,15 +24,15 @@ namespace GarantsBack.Service
             return resHttp.Result;
         }
 
-        public async Task<List<OrderModel>> GetOrdersById(string userId)
+        public async Task<List<OrderModel>> GetOrdersById(string userId, string positionId)
         {
-            var resHttp = await RequestHelper.SendGetRequestAsync<Response<List<OrderModel>>>($"{_getOrderService}/GetOrder?userId={userId}");
+            var resHttp = await RequestHelper.SendGetRequestAsync<Response<List<OrderModel>>>($"{_getOrderService}/GetOrder?userId={userId}&positionId={positionId}");
             return resHttp.Result;
         }
 
         public async Task<Order> GetOrderByUserIdAndOrderId(string userId, string orderId)
         {
-            var resHttp = await RequestHelper.SendGetRequestAsync<Response<Order>>($"{_getOrderService}/GetOrderByOrderId?userId=1&orderId=11796");
+            var resHttp = await RequestHelper.SendGetRequestAsync<Response<Order>>($"{_getOrderService}/GetOrderByOrderId?userId={userId}&orderId={orderId}");
             return resHttp.Result;
         }
     }

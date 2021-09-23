@@ -25,13 +25,13 @@ namespace GarantsBack.Controller
         }
 
         [HttpGet("GetOrdersByUserId")]
-        public async Task<IActionResult> GetOrdersById([FromQuery(Name = "userId")] string userId)
+        public async Task<IActionResult> GetOrdersById([FromQuery(Name = "userId")] string userId, [FromQuery(Name = "positionId")] string positionId)
         {
             var response = new Response<List<OrderModel>>();
 
             try
             {
-                response.Result = await _service.GetOrdersById(userId);
+                response.Result = await _service.GetOrdersById(userId, positionId);
                 response.StatusCode = 0;
             }
             catch (Exception e)

@@ -9,5 +9,6 @@ namespace GarantsBack.Interface
         public Task<List<Filials>> GetFilials();
         public Task<List<Currencies>> GetCurrencies();
         public Task<List<RequestTypes>> GetRequestTypes();
+        public Task<List<Segments>> GetSegments();
     }
 }

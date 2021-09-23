@@ -24,7 +24,15 @@ namespace GarantsBack.Service
             var resHttp = await RequestHelper.SendPostRequestAsync<CompanyKl>($"{_getCompanyKlService}{bin}", bin);
             var content = resHttp.result.responseData.ficoLoanResp.loans.loan;
             return content.Where(x => string.IsNullOrEmpty(x.parentContCode))
-                          .Select(loan => new ListKl {NameKl = loan.contCode, Amount = loan.credLinAmt})
+                          .Select(loan => new ListKl
+                          {
+                              NameKl = loan.contCode, 
+                              Amount = loan.credLinAmt, 
+                              AvailablePeriod = loan.availDate,
+                              RepStatus = loan.repStatus,
+                              RqTm = resHttp.result.rqTm,
+                              FilialId = loan.filialId
+                          })
                           .ToList();
         }
     }

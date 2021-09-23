@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GarantsBack.EF;
 using GarantsBack.Interface;
@@ -23,7 +24,7 @@ namespace GarantsBack.Controller
             _logger = logger;
         }
         
-        [HttpPost]
+        [HttpGet("ByBin")]
         public async Task<IActionResult> GetKl([FromQuery(Name = "bin")] string bin)
         {
             var response = new Response<List<ListKl>>();
@@ -41,5 +42,7 @@ namespace GarantsBack.Controller
 
             return Ok(response);
         }
+        
     }
+
 }

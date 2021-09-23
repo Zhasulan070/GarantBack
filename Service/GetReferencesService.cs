@@ -36,5 +36,11 @@ namespace GarantsBack.Service
             var requestTypes = await RequestHelper.SendGetRequestAsync<Response<List<RequestTypes>>>($"{_getReferencesService}/RequestTypes");
             return requestTypes.Result;
         }
+        
+        public async Task<List<Segments>> GetSegments()
+        {
+            var requestTypes = await RequestHelper.SendGetRequestAsync<Response<List<Segments>>>($"{_getReferencesService}/Segments");
+            return requestTypes.Result;
+        }
     }
 }

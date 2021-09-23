@@ -78,5 +78,24 @@ namespace GarantsBack.Controller
             
             return Ok(response);
         }
+        
+        [HttpGet("GetSegments")]
+        public async Task<IActionResult> GetSegments()
+        {
+            var response = new Response<List<Segments>>();
+            try
+            {
+                response.Result = await _service.GetSegments();
+                response.StatusCode = 0;
+            }
+            catch (Exception e)
+            {
+                response.StatusCode = -1;
+                response.ErrorMessage = "Some error in GetSegments service";
+                _logger.LogError(e, response.ErrorMessage);
+            }
+            
+            return Ok(response);
+        }
     }
 }

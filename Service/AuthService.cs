@@ -17,6 +17,12 @@ namespace GarantsBack.Service
             var servicesUrl = iConfig.GetSection("LocalServices").GetSection("Url").Value;
             _getAuthService = servicesUrl + iConfig.GetSection("LocalServices").GetSection("AuthService").Value;
         }
+        
+        public async Task<User> LoginByUserId(Login user)
+        {
+            var resHttp = await RequestHelper.SendPostRequestAsync<Response<User>>($"{_getAuthService}loginByUserId?username={user.Username}&password={user.Password}", user);
+            return resHttp.Result;
+        }
 
         public async Task<string> Login(Login user)
         {

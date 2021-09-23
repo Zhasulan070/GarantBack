@@ -33,6 +33,8 @@ namespace GarantsBack
             services.AddScoped<IGetReferencesService, GetReferencesService>();
             services.AddScoped<IGetCheckersService, GetCheckersService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ISaveFileService, SaveFileService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddSwaggerGen();
             
             
